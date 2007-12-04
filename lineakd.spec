@@ -13,7 +13,7 @@ Group:		System/Configuration/Hardware
 Source0:	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 Buildroot:	%{_tmppath}/%{name}-root
 Url:		http://lineak.sourceforge.net/
-BuildRequires:	XFree86-devel
+BuildRequires:	X11-devel
 Requires:	%{libname} = %{version}-%{release}
 
 %description
