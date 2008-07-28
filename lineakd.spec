@@ -1,6 +1,6 @@
 %define name    lineakd
 %define version 0.9
-%define release %mkrel 1
+%define release %mkrel 3
 %define major	0
 %define libname	%mklibname %{name} %{major}
 
