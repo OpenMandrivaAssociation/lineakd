@@ -3,6 +3,7 @@
 %define release %mkrel 4
 %define major	0
 %define libname	%mklibname %{name} %{major}
+%define develname %mklibname -d %{name}
 
 Name:           %{name}
 Version:        %{version}
@@ -13,7 +14,10 @@ Group:		System/Configuration/Hardware
 Source0:	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 Buildroot:	%{_tmppath}/%{name}-root
 Url:		http://lineak.sourceforge.net/
-BuildRequires:	X11-devel
+BuildRequires:	libx11-devel
+BuildRequires:	libxtst-devel
+Patch0:		lineakd-0.9.0-gcc43.patch
+Patch1:		lineakd-0.9.0-link.patch
 Requires:	%{libname} = %{version}-%{release}
 
 %description
@@ -22,6 +26,7 @@ Daemon to control the multimedia keys on modern keyboards.
 Features X11 support, window manager independence, ability to configure
 all keys (via a GUI [found in lineakconfig] & .conf file), volume
 control, and sound controls.
+
 %package -n %{libname}
 Summary:	Libraries needed to run programs linked with %{name}
 Group:		System/Libraries
@@ -31,24 +36,24 @@ Provides:	lib%{name} = %{version}-%{release}
 This package contains the library needed to run programs dynamically
 linked with %{name}.
 
-%package -n %{libname}-devel
+%package -n %{develname}
 Summary:	Headers for developing programs using %{name}
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	lib%{name}-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
+Obsoletes:	%{_lib}lineakd0-devel
 
-%description -n %{libname}-devel
+%description -n %{develname}
 This package contains the headers that programmers will need to develop 
 applications which will use %{name}.
 
 %prep
 %setup -q
+%patch0 -p1
+%patch1 -p0
 
 %build
-%if %mdkversion <= 1000
-%define __libtoolize true
-%endif
 %configure2_5x
 %make
 
@@ -76,7 +81,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/%{name}
 %{_bindir}/xsendkey*
 %{_sbindir}/send_to_keyboard
-
 %{_libdir}/%{name}
 %_mandir/*/*
 
@@ -84,11 +88,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %{_libdir}/*.so.*
 
-%files -n %libname-devel
+%files -n %develname
 %defattr(-,root,root)
 %{_includedir}/lineak
 %{_libdir}/*.a
 %{_libdir}/*.la
 %{_libdir}/*.so
-
-
