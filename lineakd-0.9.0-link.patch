@@ -1,0 +1,26 @@
+--- lineak/Makefile.am.link	2011-01-06 15:50:18.000000000 +0000
++++ lineak/Makefile.am	2011-01-06 15:51:31.000000000 +0000
+@@ -19,8 +19,8 @@
+ #   liblineak_la_LDFLAGS = -version-info 8:0:8 $(all_libraries); \
+ #fi;
+ 
+-liblineak_la_LIBADD  = -lX11 -lXext $(X_LIBS)  -lXt -lSM -lICE -L/usr/X11R6/lib
+-liblineak_la_LDFLAGS = -version-info 8:0:8 $(all_libraries) -L/usr/X11R6/lib @X_LIBS@ @X_PRE_LIBS@  -lpthread
++liblineak_la_LIBADD  = -lX11 -ldl -lpthread
++liblineak_la_LDFLAGS = -version-info 8:0:8
+   
+ lineak_HEADERS = configdirectives.h configloader.h definitions.h defloader.h lconfig.h lconfigdata.h ldef.h lobject.h lkbd.h lkey.h lbutton.h loader.h msgpasser.h saver.h lcommand.h lockctrl.h lineak_util_functions.h lineak_core_functions.h cdromctrl.h xmgr.h displayctrl.h plugin_definitions.h commandexec.h pluginmanager.h
+   
+--- lineak/Makefile.in.link	2011-01-06 15:51:39.000000000 +0000
++++ lineak/Makefile.in	2011-01-06 15:52:08.000000000 +0000
+@@ -307,8 +307,8 @@
+ #else \
+ #   liblineak_la_LDFLAGS = -version-info 8:0:8 $(all_libraries); \
+ #fi;
+-liblineak_la_LIBADD = -lX11 -lXext $(X_LIBS)  -lXt -lSM -lICE -L/usr/X11R6/lib
+-liblineak_la_LDFLAGS = -version-info 8:0:8 $(all_libraries) -L/usr/X11R6/lib @X_LIBS@ @X_PRE_LIBS@  -lpthread
++liblineak_la_LIBADD  = -lX11 -ldl -lpthread
++liblineak_la_LDFLAGS = -version-info 8:0:8
+ lineak_HEADERS = configdirectives.h configloader.h definitions.h defloader.h lconfig.h lconfigdata.h ldef.h lobject.h lkbd.h lkey.h lbutton.h loader.h msgpasser.h saver.h lcommand.h lockctrl.h lineak_util_functions.h lineak_core_functions.h cdromctrl.h xmgr.h displayctrl.h plugin_definitions.h commandexec.h pluginmanager.h
+ lineakdir = $(includedir)/lineak
+ #>- all: all-am
