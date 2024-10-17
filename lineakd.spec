@@ -13,7 +13,7 @@ License:	GPL
 Group:		System/Configuration/Hardware          
 Source0:	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 Buildroot:	%{_tmppath}/%{name}-root
-Url:		http://lineak.sourceforge.net/
+Url:		https://lineak.sourceforge.net/
 BuildRequires:	libx11-devel
 BuildRequires:	libxtst-devel
 Patch0:		lineakd-0.9.0-gcc43.patch
